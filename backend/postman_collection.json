@@ -1,0 +1,370 @@
+{
+  "info": {
+    "name": "Aithreya API",
+    "description": "Complete API collection for Aithreya - Indian Constitution Education Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"Password123\",\n  \"phoneNumber\": \"9876543210\",\n  \"preferredLanguage\": \"en\",\n  \"educationLevel\": \"undergraduate\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"Password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Updated\",\n  \"preferredLanguage\": \"hi\",\n  \"darkMode\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "item": [
+        {
+          "name": "Get All Content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/content?page=1&limit=20&language=en",
+              "host": ["{{base_url}}"],
+              "path": ["content"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "language",
+                  "value": "en"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Preamble",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/content/preamble?language=en",
+              "host": ["{{base_url}}"],
+              "path": ["content", "preamble"],
+              "query": [
+                {
+                  "key": "language",
+                  "value": "en"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Fundamental Rights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/content/fundamental-rights?language=en",
+              "host": ["{{base_url}}"],
+              "path": ["content", "fundamental-rights"],
+              "query": [
+                {
+                  "key": "language",
+                  "value": "en"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Article by Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/content/article/14?language=en",
+              "host": ["{{base_url}}"],
+              "path": ["content", "article", "14"],
+              "query": [
+                {
+                  "key": "language",
+                  "value": "en"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/content/search?q=equality&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["content", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "equality"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Progress",
+      "item": [
+        {
+          "name": "Get Overall Progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/progress/overview",
+              "host": ["{{base_url}}"],
+              "path": ["progress", "overview"]
+            }
+          }
+        },
+        {
+          "name": "Start Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/progress/:contentId/start",
+              "host": ["{{base_url}}"],
+              "path": ["progress", ":contentId", "start"],
+              "variable": [
+                {
+                  "key": "contentId",
+                  "value": "YOUR_CONTENT_ID_HERE"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Complete Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/progress/:contentId/complete",
+              "host": ["{{base_url}}"],
+              "path": ["progress", ":contentId", "complete"],
+              "variable": [
+                {
+                  "key": "contentId",
+                  "value": "YOUR_CONTENT_ID_HERE"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Toggle Bookmark",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/progress/:contentId/bookmark",
+              "host": ["{{base_url}}"],
+              "path": ["progress", ":contentId", "bookmark"],
+              "variable": [
+                {
+                  "key": "contentId",
+                  "value": "YOUR_CONTENT_ID_HERE"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Quiz Attempt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"score\": 80,\n  \"totalQuestions\": 10,\n  \"correctAnswers\": 8,\n  \"timeTaken\": 300\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/progress/:contentId/quiz",
+              "host": ["{{base_url}}"],
+              "path": ["progress", ":contentId", "quiz"],
+              "variable": [
+                {
+                  "key": "contentId",
+                  "value": "YOUR_CONTENT_ID_HERE"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Bookmarks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/progress/bookmarks",
+              "host": ["{{base_url}}"],
+              "path": ["progress", "bookmarks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["health"]
+        }
+      }
+    }
+  ]
+}
